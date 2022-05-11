@@ -1,15 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './components/Navbar';
+import MainContainer from './components/MainContainer';
 
-import { Button } from 'react-bootstrap';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Button variant='primary'>Test Button</Button>
-      </header>
+      <NavBar></NavBar>
+      <MainContainer></MainContainer>
     </div>
   );
 }

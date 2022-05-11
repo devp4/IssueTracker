@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap');
+
+.vstack {
+    margin-top: 3%;
+    background-color: #141432;
+    border-radius: 10px;
+}
+
+.card { 
+    background-color: #1b1a43;
+    color: white;
+    margin: 2% 2% 0% 2%;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.card-header {
+    border-color: #2e2d71;
+}
