@@ -4,14 +4,14 @@ import ProjectContainer from "./ProjectContainer"
 
 const MainContainer = () => {
     return (
-        <Container fluid>
-            <Row>
-                <Col>
-                    <ProjectContainer></ProjectContainer>
-                </Col>
-                <Col>STATS PAGE FOR LATER</Col>
-            </Row>
-        </Container>
+            <Container fluid>
+                <Row>
+                    <Col sm={7}>
+                        <ProjectContainer></ProjectContainer>
+                    </Col>
+                    <Col>STATS PAGE FOR LATER</Col>
+                </Row>
+            </Container>
     )
 
 }
