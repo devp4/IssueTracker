@@ -1,0 +1,93 @@
+/* <----- Form -----> */
+.form-control {
+    resize: none;
+    color: rgb(201, 201, 201) !important;
+    background-color: #2b2b6c;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.form-control:focus {
+    color: white !important;
+    background-color: #2b2b6c;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Quicksand', sans-serif;
+    outline: none;
+    box-shadow: none;
+}
+
+.form-control:hover {
+    background-color: #2b2b6c;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.btn-close {
+    background-color: rgb(171, 5, 5);
+    height: 12px;
+    width: 12px;
+    border-radius: 15px;
+    border: 1.5px solid rgb(120, 3, 3);
+    opacity: 1;
+}
+
+.btn-close:hover {
+    background-color: rgb(211, 6, 6);
+    border: 1.5px solid rgb(120, 3, 3);
+    opacity: 1;
+}
+
+/* <----- Submit Button -----> */
+.submit-btn {
+    align-self: center;
+    background-color: rgb(0, 128, 0);
+    font-size: 18px;
+    line-height: 19px;
+    margin-right: 39%;
+    width: 100px;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 0.5%;
+    border: 3px solid rgb(2, 93, 2);
+    float: right;
+    border-radius: 25px;
+}
+
+.submit-btn:focus {
+    background-color: rgb(0, 128, 0);
+    border: 3px solid rgb(2, 93, 2);
+    box-shadow: none !important;
+}
+
+.submit-btn:hover {   
+    background-color: rgb(0, 128, 0);
+    border: 3px solid rgb(2, 93, 2);
+    box-shadow: none !important;
+}
+
+
+/* <----- Invalid Form -----> */
+.form-control.is-invalid {
+    border: 1px solid red;
+    color: black;
+    opacity: 0.9;
+}
+
+.invalid-feedback {
+    font-family: 'Quicksand', sans-serif;
+    color:  red;
+    opacity: 0.9;
+}
+
+.form-control.is-invalid:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.language {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}

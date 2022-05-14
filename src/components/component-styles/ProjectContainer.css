@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap');
 
+/* <----- Stack -----> */
 .vstack {
     background-color: #141432;
     border-radius: 10px;
@@ -8,7 +9,6 @@
 }
 
 /* <----- Card -----> */
-
 .card { 
     background-color: #1b1a43;
     color: white;
@@ -45,7 +45,6 @@
 }
 
 /* <----- Project Header -----> */
-
 .project-header {
     color: white;
     font-size: xx-large;
@@ -61,20 +60,19 @@
     border-radius: 25px;
 }
 
-.btn:focus {
+.project-btn:focus {
     border: 3px solid #232256;
     background-color: #4240b1;
     box-shadow: none !important;
 }
 
-.btn:hover {
+.project-btn:hover {
     border: 3px solid #232256;
     background-color: #4240b1;
 }
 
 
 /* <----- Badges -----> */
-
 .language-badge {
     background-color: #3634b6;
     font-size: 15px;
@@ -100,5 +98,20 @@
     margin-left: 5%;
     background-color: #605eed;
 }
+
+/* <----- Modal -----> */
+.modal-content {
+    background-color: #1c1c47;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    border: 1.5px solid #3e3d9a;
+    overflow-y: hidden;
+}
+
+.modal-header {
+    font-size: 20px;
+    border-bottom: 1.5px solid #2f2e74;
+}
+
 
 
