@@ -7,7 +7,7 @@ const NavBar = () => {
     return (    
         <Navbar className="nav" variant="dark">
             <Navbar.Brand>
-                <IconContext.Provider value={{color: "#383799", className: "bug-icon", size: 30}}>
+                <IconContext.Provider value={{color: "#5755ed", className: "bug-icon", size: 30}}>
                     <BsBugFill/>
                 </IconContext.Provider>
                 Issue Tracker

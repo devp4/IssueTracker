@@ -1,8 +1,8 @@
-import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { Form, Button } from "react-bootstrap"
+import { useState } from "react"
 import "./component-styles/ProjectForm.css"
 
-const ProjectForm = ( { projects, setProjects, handleClose}) => {
+const ProjectForm = ( { projects, setProjects, handleClose, ID, setID}) => {
     
     const [errors, setErrors] = useState({})
 
@@ -19,6 +19,7 @@ const ProjectForm = ( { projects, setProjects, handleClose}) => {
         e.preventDefault()
         const form = e.target
         const data = {
+            id: ID,
             title: form[0].value,
             description: form[1].value,
             language: form[2].value
@@ -42,6 +43,7 @@ const ProjectForm = ( { projects, setProjects, handleClose}) => {
         }
 
         setProjects([...projects, data])
+        setID(prevID => prevID + 1)
         handleClose()
     }
 

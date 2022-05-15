@@ -44,6 +44,58 @@
     font-size: x-large;
 }
 
+.edit-btn {
+    margin-top: 0.7%;
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    padding: 0 0 0 0;
+    float: right;
+    margin-right: 3%;
+}
+
+.edit-btn:hover {
+    background-color: transparent;
+}
+
+.edit-btn:focus {
+    background-color: transparent;
+    border: none;
+    padding: 0 0 0 0;
+    float: right;
+    outline: none;
+    box-shadow: none;
+}
+
+.delete-btn {
+    margin-top: 0.7%;
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    padding: 0 0 0 0;
+    float: right;
+}
+
+.delete-btn:hover {
+    background-color: transparent;
+}
+
+.delete-btn:hover {
+    background-color: transparent;
+    border: none;
+    padding: 0 0 0 0;
+    float: right;
+}
+
+.delete-btn:focus {
+    background-color: transparent;
+    border: none;
+    padding: 0 0 0 0;
+    float: right;
+    outline: none;
+    box-shadow: none;
+}
+
 /* <----- Project Header -----> */
 .project-header {
     color: white;
@@ -75,27 +127,34 @@
 /* <----- Badges -----> */
 .language-badge {
     background-color: #3634b6;
-    font-size: 15px;
+    font-size: 14px;
     vertical-align: middle;
     padding: 7px;
-    margin-bottom: 0.5%;
+    margin-bottom: 0.4%;
     margin-left: 3%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .issue-badge {
     background-color: #3634b6;
-    font-size: 17px;
+    font-size: 14px;
+    height: 28px;
+    width: 85px;
     vertical-align: middle;
     padding: 7px;
     margin-bottom: 0.5%;
-    margin-left: 3%;
-    width: 100px;
+    margin-left: 2%; 
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .issue-number {
-    font-size: 12px;
+    font-size: 11px;
     border-radius: 50%;
-    margin-left: 5%;
+    margin-left: 10%;
+    margin-top: 0%;
     background-color: #605eed;
 }
 

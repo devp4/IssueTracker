@@ -8,9 +8,25 @@ const ProjectContainer = () => {
 
     const [show, setShow] = useState(false)
     const [projects, setProjects] = useState([])
+    const [ID, setID] = useState(1)
+    const [deleteID, setDeleteID] = useState(0)
 
     const handleShow = () => setShow(true)
     const handleClose = () => setShow(false)
+    
+    const handleDelete = () => {
+        let ind = 0 
+        for (let project of projects) {
+            if (project.id === deleteID) {
+                projects.splice(ind, 1)
+                setDeleteID(0)
+                setProjects([...projects])
+                break
+            }
+    
+            ind += 1
+        }
+    }
 
     return (
             <Stack>
@@ -22,11 +38,11 @@ const ProjectContainer = () => {
                         Create Project
                     </Modal.Header>
                     <Modal.Body>
-                        <ProjectForm projects={projects} setProjects={setProjects} handleClose={handleClose}></ProjectForm>
+                        <ProjectForm projects={projects} setProjects={setProjects} handleClose={handleClose} ID={ID} setID={setID}></ProjectForm>
                     </Modal.Body>
                 </Modal>
-                {projects ? projects.map((project) => <ProjectCard project={project}></ProjectCard>) : null}
-                {console.log(projects)}
+                {deleteID ? handleDelete() : null}
+                {projects ? projects.map((project) => <ProjectCard key={project.id} project={project} setDeleteID={setDeleteID}></ProjectCard>) : null}
             </Stack>
     )
 
