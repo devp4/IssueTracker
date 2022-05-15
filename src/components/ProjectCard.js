@@ -1,4 +1,4 @@
-import { Card, Badge, Row, Col, Button, Modal } from "react-bootstrap"
+import { Card, Badge, Row, Col, Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap"
 import { ProjectEditForm, ProjectDeleteForm } from "./ProjectToolForms"
 import { useState } from "react"
 import { BsPencilSquare, BsFillTrashFill } from "react-icons/bs"
@@ -50,16 +50,21 @@ const ProjectCard = ({ project, setDeleteID }) => {
                 <Badge className="issue-badge" pill bg="">Issues
                     <Badge className="issue-number" bg="">9</Badge>
                 </Badge>
-                <Button className="delete-btn" onClick={handleDeleteShow}>
-                    <IconContext.Provider value={{ color: "#8663f7", className: "delete-icon", size: 27 }}>
-                        <BsFillTrashFill />
-                    </IconContext.Provider>
-                </Button>
-                <Button className="edit-btn" onClick={handleEditShow}>
-                    <IconContext.Provider value={{ color: "#8663f7", className: "edit-icon", size: 27 }}>
-                        <BsPencilSquare />
-                    </IconContext.Provider>
-                </Button>
+                <OverlayTrigger placement="top" overlay={<Tooltip>Delete</Tooltip>}>
+                    <Button className="delete-btn" onClick={handleDeleteShow}>
+                        <IconContext.Provider value={{ color: "#8663f7", className: "delete-icon", size: 27 }}>
+                            <BsFillTrashFill />
+                        </IconContext.Provider>
+                    </Button>
+                </OverlayTrigger>
+                <OverlayTrigger placement="top" overlay={<Tooltip>Edit</Tooltip>}>
+                    <Button className="edit-btn" onClick={handleEditShow}>
+                        <IconContext.Provider value={{ color: "#8663f7", className: "edit-icon", size: 27 }}>
+                            <BsPencilSquare />
+                        </IconContext.Provider>
+                    </Button>
+                </OverlayTrigger>
+
             </Card.Header>
             <Card.Body>
                 <Card.Text>
