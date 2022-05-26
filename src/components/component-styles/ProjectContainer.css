@@ -6,8 +6,41 @@
     border-radius: 10px;
     margin-top: 3%;
     padding-bottom: 13px;
-    height: 650px;
+    height: 670px;
 }
+
+.page-row {
+    background-color: #141432;
+    height: 40px;
+}
+
+.page-col {
+    margin-top: 1%;
+    padding: 0px 0px 0px 0px;
+}
+
+.page-left {
+    margin-right: 10%;
+    float: right;
+}
+
+.page-right {
+    margin-left: 10%;
+    float: left;
+}
+
+.page-link {
+    padding: 0 4px 0 4px;
+    height: 37px;
+    background-color: transparent;
+    border: none;
+}
+
+.page-cont {
+    border-bottom: 1px solid #2e2d71;
+    height: 50px;
+}
+
 
 /* <----- Card -----> */
 .card { 
