@@ -6,7 +6,6 @@
     border-radius: 10px;
     margin-top: 3%;
     padding-bottom: 13px;
-    height: 670px;
 }
 
 .page-row {
@@ -36,9 +35,19 @@
     border: none;
 }
 
+.page-link:hover {
+    outline: 2px solid #4240a5;
+    background-color: transparent;
+}
+
+.page-link:focus {
+    background-color: transparent;
+    box-shadow: none;
+}
+
 .page-cont {
     border-bottom: 1px solid #2e2d71;
-    height: 50px;
+    height: 55px;
 }
 
 
@@ -76,6 +85,29 @@
 .card-header {
     border-color: #2e2d71;
     font-size: x-large;
+}
+
+.view-btn {
+    margin-top: 0%;
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    padding: 0 0 0 0;
+    float: right;
+    margin-right: 4%;
+}
+
+.view-btn:hover {
+    background-color: transparent;
+}
+
+.view-btn:focus {
+    background-color: transparent;
+    border: none;
+    padding: 0 0 0 0;
+    float: right;
+    outline: none;
+    box-shadow: none;
 }
 
 .edit-btn {
@@ -170,27 +202,17 @@
     padding-right: 10px;
 }
 
-.issue-badge {
-    background-color: #3634b6;
+.status-badge {
+    background-color: #008000;
     font-size: 14px;
-    height: 28px;
-    width: 85px;
     vertical-align: middle;
     padding: 7px;
-    margin-bottom: 0.5%;
-    margin-left: 2%; 
-    text-align: left;
+    margin-bottom: 0.4%;
+    margin-left: 2%;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.issue-number {
-    font-size: 11px;
-    border-radius: 50%;
-    margin-left: 10%;
-    margin-top: 0%;
-    background-color: #605eed;
-}
 
 /* <----- Modal -----> */
 .modal-content {

@@ -22,7 +22,8 @@ const ProjectForm = ( { projects, setProjects, handleClose, ID, setID}) => {
             id: ID,
             title: form[0].value,
             description: form[1].value,
-            language: form[2].value
+            language: form[2].value,
+            status: "Open"
         }
         
         // Error Validation

@@ -1,7 +1,32 @@
+import { useState } from "react"
 import { Form, Button, Row, Col} from "react-bootstrap"
 import "./component-styles/ProjectForm.css"
 
 export const ProjectEditForm = ( { project, handleEditClose}) => {
+
+    const checkStatus = () => {
+        if (project.status === "Open") {
+            return false
+        }
+        
+        else {
+            return true
+        }
+    }
+    
+    const [checked, setChecked] = useState(() => checkStatus())
+
+    const handleStatus = () => {
+        if (project.status === "Open") {
+            project.status = "Closed"
+            document.getElementById("status-badge").style.backgroundColor = "#FF0000"
+        }
+
+        else {
+            project.status = "Open"
+            document.getElementById("status-badge").style.backgroundColor = "#008000"
+        }
+    }
 
     const getFormData = (e) => {
         e.preventDefault()
@@ -10,7 +35,8 @@ export const ProjectEditForm = ( { project, handleEditClose}) => {
             id: project.id,
             title: form[0].value,
             description: form[1].value,
-            language: form[2].value
+            language: form[2].value,
+            status: "Open"
         }
 
         // Check Blanks
@@ -52,6 +78,7 @@ export const ProjectEditForm = ( { project, handleEditClose}) => {
                 <Form.Label>Language</Form.Label>
                 <Form.Control type="text" placeholder="New Project Language (DELETE to remove)" spellCheck="false"></Form.Control>
             </Form.Group>
+            <Form.Switch className="close-switch" type="switch" label={`Closed`} onClick={handleStatus} defaultChecked={checked}/>
             <Button className="apply-changes-btn" type="submit">Apply Changes</Button>
         </Form>
 

@@ -161,3 +161,25 @@
     background-color: rgb(211, 6, 6);
     border: 3px solid rgb(120, 3, 3);
 }
+
+.close-switch {
+    margin-top: 6%;
+    margin-bottom: 6%;
+}
+
+.form-check-input { 
+    background-color: white;
+}
+
+.form-check-input:focus { 
+    box-shadow: none;
+    outline: none;
+    border: none;
+}
+
+.form-check-input:checked { 
+    background-color: red;
+    box-shadow: none;
+    outline: none;
+    border: none;
+}
