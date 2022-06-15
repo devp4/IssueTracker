@@ -63,8 +63,15 @@ const ProjectContainer = () => {
 
     }
 
+    const test = () => {
+        fetch('/api/test')
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
+
     return (
         <Stack>
+            {test()}
             <Card.Header className="project-header">Projects
                 <Button className="project-btn" onClick={handleShow}>Add Project</Button>
             </Card.Header>

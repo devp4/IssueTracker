@@ -88,13 +88,12 @@
 }
 
 .view-btn {
-    margin-top: 0%;
+    margin-top: 0.2%;
     background-color: transparent;
     border: none;
     width: 30px;
     padding: 0 0 0 0;
     float: right;
-    margin-right: 4%;
 }
 
 .view-btn:hover {
@@ -140,6 +139,7 @@
     width: 30px;
     padding: 0 0 0 0;
     float: right;
+    margin-right: 3%;
 }
 
 .delete-btn:hover {

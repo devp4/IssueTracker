@@ -1,7 +1,7 @@
 import { Card, Badge, Row, Col, Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap"
 import { ProjectEditForm, ProjectDeleteForm } from "./ProjectToolForms"
 import { useState } from "react"
-import { BsPencilSquare, BsFillTrashFill, BsCaretDownFill } from "react-icons/bs"
+import { BsPencilSquare, BsFillTrashFill, BsCaretRightFill } from "react-icons/bs"
 import { IconContext } from "react-icons"
 
 const ProjectCard = ({ project, setDeleteID }) => {
@@ -49,6 +49,13 @@ const ProjectCard = ({ project, setDeleteID }) => {
                 </Badge>{' '}
                 <Badge className="status-badge" id="status-badge" pill bg="">{project.status}
                 </Badge>{' '}
+                <OverlayTrigger placement="top" overlay={<Tooltip>Issues</Tooltip>}>
+                    <Button className="view-btn" onClick={handleEditShow}>
+                        <IconContext.Provider value={{ color: "#8663f7", className: "delete-icon", size: 33 }}>
+                            <BsCaretRightFill />
+                        </IconContext.Provider>
+                    </Button>
+                </OverlayTrigger>
                 <OverlayTrigger placement="top" overlay={<Tooltip>Delete</Tooltip>}>
                     <Button className="delete-btn" onClick={handleDeleteShow}>
                         <IconContext.Provider value={{ color: "#8663f7", className: "delete-icon", size: 27 }}>
@@ -60,13 +67,6 @@ const ProjectCard = ({ project, setDeleteID }) => {
                     <Button className="edit-btn" onClick={handleEditShow}>
                         <IconContext.Provider value={{ color: "#8663f7", className: "edit-icon", size: 27 }}>
                             <BsPencilSquare />
-                        </IconContext.Provider>
-                    </Button>
-                </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Issues</Tooltip>}>
-                    <Button className="view-btn" onClick={handleEditShow}>
-                        <IconContext.Provider value={{ color: "#8663f7", className: "delete-icon", size: 40 }}>
-                            <BsCaretDownFill />
                         </IconContext.Provider>
                     </Button>
                 </OverlayTrigger>
