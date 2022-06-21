@@ -86,8 +86,34 @@ export const ProjectEditForm = ( { project, handleEditClose}) => {
 }
 
 export const ProjectDeleteForm = ({ project, handleDeleteClose, setDeleteID }) => {
+    
+    // Delete Post function 
+    async function deletePost(id) {
+        const response = await fetch(`/api/delete-project/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            }
+        )
+    
+        return response
+    }
+
     const handleDelete = () => {
-        setDeleteID(project.id)
+        const response = deletePost(project.id)
+        response.then((response) => {
+            // Check if response was valid
+            if (response.status === 200){
+                // delete project 
+                setDeleteID(project.id)
+            }
+            else {
+                alert("Count Not Delete Project")
+                return
+            }
+        })
+
         handleDeleteClose()
     }
     

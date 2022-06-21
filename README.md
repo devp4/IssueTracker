@@ -5,6 +5,10 @@ python -m venv venv_name (create virtual env)
 pip install -r requirements.txt
 ```
 
+# Database Config
+```
+Update /api/config.json with your database information
+```
 
 # Start React App
 From /issue-tracker:

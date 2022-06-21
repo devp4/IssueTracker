@@ -11,7 +11,6 @@ const ProjectContainer = () => {
 
     const [show, setShow] = useState(false)
     const [projects, setProjects] = useState([])
-    const [ID, setID] = useState(1)
     const [deleteID, setDeleteID] = useState(0)
     const [page, setPage] = useState(0)
 
@@ -63,15 +62,8 @@ const ProjectContainer = () => {
 
     }
 
-    const test = () => {
-        fetch('/api/test')
-        .then(response => response.json())
-        .then(data => console.log(data))
-    }
-
     return (
         <Stack>
-            {test()}
             <Card.Header className="project-header">Projects
                 <Button className="project-btn" onClick={handleShow}>Add Project</Button>
             </Card.Header>
@@ -120,7 +112,7 @@ const ProjectContainer = () => {
                     Create Project
                 </Modal.Header>
                 <Modal.Body>
-                    <ProjectForm projects={projects} setProjects={setProjects} handleClose={handleClose} ID={ID} setID={setID}></ProjectForm>
+                    <ProjectForm projects={projects} setProjects={setProjects} handleClose={handleClose}></ProjectForm>
                 </Modal.Body>
             </Modal>
             {deleteID ? handleDelete() : null}

@@ -2,7 +2,7 @@ import { Form, Button } from "react-bootstrap"
 import { useState } from "react"
 import "./component-styles/ProjectForm.css"
 
-const ProjectForm = ( { projects, setProjects, handleClose, ID, setID}) => {
+const ProjectForm = ( { projects, setProjects, handleClose }) => {
     
     const [errors, setErrors] = useState({})
 
@@ -19,11 +19,10 @@ const ProjectForm = ( { projects, setProjects, handleClose, ID, setID}) => {
         e.preventDefault()
         const form = e.target
         const data = {
-            id: ID,
             title: form[0].value,
             description: form[1].value,
             language: form[2].value,
-            status: "Open"
+            is_open: true
         }
         
         // Error Validation
@@ -41,11 +40,35 @@ const ProjectForm = ( { projects, setProjects, handleClose, ID, setID}) => {
         if (foundError) {
             setErrors({...errors})
             return
-        }
+        }  
 
-        setProjects([...projects, data])
-        setID(prevID => prevID + 1)
-        handleClose()
+        // Create Post function 
+        async function createPost(data) {
+            const response = await fetch("/api/create-project", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }
+            )
+        
+            return response
+        }
+        
+        const response = createPost(data)
+        response.then((response) => {
+            // Check if response was valid
+            if (response.status === 200){
+                // Add project 
+                setProjects([...projects, data])
+                handleClose()
+            }
+            else {
+                alert("Count Not Create Project")
+                return
+            }
+        })
     }
 
     return (

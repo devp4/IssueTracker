@@ -1,7 +1,7 @@
 {
-    "host": "HOSTNAME",
+    "host": "issuetracker.ceuh8hrzvnrv.us-east-2.rds.amazonaws.com",
     "port": 5432,
-    "user": "USERNAME",
-    "password": "PASSWORD",
-    "database": "DATABASE_NAME"
+    "user": "postgres",
+    "password": "issuetracker",
+    "database": "postgres"
 }

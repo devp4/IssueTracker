@@ -1,9 +1,12 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+api/__pycache__
+
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+api/venv
 
 # testing
 /coverage

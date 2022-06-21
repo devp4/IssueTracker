@@ -20,9 +20,52 @@ class Database:
     def start(self):
         self.connection = psycopg2.connect(**self.config)
         self.cursor = self.connection.cursor()
+    
+    def create_project(self, data):
+        ''''
+        Add new row into Projects table with given data
+        
+        Args:
+            data: 
+                {
+                    title: str
+                    description: str
+                    language: str
+                    is_open: bool
+                }
+        '''
+        
+        status = self.cursor.execute('''
+                    INSERT INTO projects (title, description, langauge, open)
+                    VALUES(%(title)s, %(description)s, %(language)s, %(is_open)s)''', data)
 
-        #TEST
-        self.cursor.execute(f"INSERT INTO projects VALUES({1}, 'test', 'test2', 'test3', {True})")
-        self.connection.commit()
+        if status == None:
+            # SUCCESS
+            self.connection.commit()
+            return True
+        else:
+            # FAIL
+            return False
+
+    def delete_project(self, project_id):
+        ''''
+        Delete project given project id
+        
+        Args:
+            id: int
+        
+        '''
+
+        status = self.cursor.execute('''
+                    DELETE FROM projects 
+                    WHERE id=%s''', (project_id))
+        print(status)
+        if status == None:
+            # SUCCESS
+            self.connection.commit()
+            return True
+        else:
+            # FAIL
+            return False
 
 
