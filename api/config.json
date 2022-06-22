@@ -1,7 +1,0 @@
-{
-    "host": "HOSTNAME",
-    "port": 5432,
-    "user": "USERNAME",
-    "password": "PASSWORD",
-    "database": "DATABASE_NAME"
-} 
