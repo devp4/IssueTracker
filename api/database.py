@@ -32,17 +32,18 @@ class Database:
                     description: str
                     language: str
                     is_open: bool
+                    time: str
                 }
         '''
         
         status = self.cursor.execute('''
-                    INSERT INTO projects (title, description, langauge, open)
-                    VALUES(%(title)s, %(description)s, %(language)s, %(is_open)s)''', data)
+                    INSERT INTO projects (title, description, langauge, is_open, time)
+                    VALUES(%(title)s, %(description)s, %(language)s, %(is_open)s, %(time)s) RETURNING id''', data)
 
         if status == None:
             # SUCCESS
             self.connection.commit()
-            return True
+            return self.cursor.fetchone()[0]
         else:
             # FAIL
             return False
@@ -59,7 +60,7 @@ class Database:
         status = self.cursor.execute('''
                     DELETE FROM projects 
                     WHERE id=%s''', (project_id))
-        print(status)
+
         if status == None:
             # SUCCESS
             self.connection.commit()

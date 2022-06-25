@@ -14,18 +14,7 @@ const ProjectCard = ({ project, setDeleteID }) => {
 
     const handleDeleteShow = () => setDeleteShow(true)
     const handleDeleteClose = () => setDeleteShow(false)
-
-    const getDate = () => {
-        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const date = new Date()
-
-        const month = months[date.getMonth()]
-        const day = date.getDate()
-        const year = date.getFullYear()
-        const time = date.toLocaleString('en-US').split(", ")[1]
-        return `Created: ${month} ${day}, ${year}\t- ${time}`
-    }
-
+    
     return (
         <Card>
             <Modal show={editShow} onHide={handleEditClose}>
@@ -81,7 +70,7 @@ const ProjectCard = ({ project, setDeleteID }) => {
                 <Row className="row-footer">
                     <Col>
                         <Card.Text className="left-footer">
-                            {getDate()}
+                            {project.time}
                         </Card.Text>
                     </Col>
                     <Col>

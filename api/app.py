@@ -11,9 +11,9 @@ def home():
 @app.route("/api/create-project", methods=["POST"])
 def create_project():
     data = request.get_json()
-    status = db.create_project(data=data)
-    if status:
-        return data, 200
+    proj_id = db.create_project(data=data)
+    if proj_id:
+        return {"id": proj_id}, 200
     
     return data, 404
 

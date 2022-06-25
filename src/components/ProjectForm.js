@@ -15,6 +15,32 @@ const ProjectForm = ( { projects, setProjects, handleClose }) => {
         }
     }
 
+    const getTime = () => {
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const date = new Date()
+
+        const month = months[date.getMonth()]
+        const day = date.getDate()
+        const year = date.getFullYear()
+        const time = date.toLocaleString('en-US').split(", ")[1]
+        return `Created: ${month} ${day}, ${year}\t- ${time}`
+    }
+
+    // Create Post function 
+    async function createPost(data) {
+        const response = await fetch("/api/create-project", {
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+        )
+    
+        return response
+    }
+            
+
     const getFormData = (e) => {
         e.preventDefault()
         const form = e.target
@@ -22,7 +48,8 @@ const ProjectForm = ( { projects, setProjects, handleClose }) => {
             title: form[0].value,
             description: form[1].value,
             language: form[2].value,
-            is_open: true
+            is_open: true,
+            time: getTime()
         }
         
         // Error Validation
@@ -42,32 +69,21 @@ const ProjectForm = ( { projects, setProjects, handleClose }) => {
             return
         }  
 
-        // Create Post function 
-        async function createPost(data) {
-            const response = await fetch("/api/create-project", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                }
-            )
-        
-            return response
-        }
-        
         const response = createPost(data)
         response.then((response) => {
             // Check if response was valid
-            if (response.status === 200){
-                // Add project 
-                setProjects([...projects, data])
-                handleClose()
+            if (response.status === 200) {
+                return response.json()
             }
             else {
                 alert("Count Not Create Project")
                 return
             }
+        }).then((json_data)=> {
+            // Add project 
+            data.id = json_data.id
+            setProjects([...projects, data])
+            handleClose()
         })
     }
 
