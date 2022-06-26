@@ -82,7 +82,7 @@ const ProjectForm = ( { projects, setProjects, handleClose }) => {
         }).then((json_data)=> {
             // Add project 
             data.id = json_data.id
-            setProjects([...projects, data])
+            setProjects([data, ...projects])
             handleClose()
         })
     }
