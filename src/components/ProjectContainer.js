@@ -1,7 +1,7 @@
 import { Button, Card, Stack, Modal, Pagination, Row, Col, Container } from "react-bootstrap"
 import { BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { IconContext } from "react-icons"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import ProjectCard from "./ProjectCard"
 import "./component-styles/ProjectContainer.css"
 import ProjectForm from "./ProjectForm"
@@ -61,6 +61,16 @@ const ProjectContainer = () => {
         }
 
     }
+
+    useEffect(() => {
+        // Get projects when website is first rendered
+        fetch("api/projects").then((data) => {
+            return data.json()
+        }).then((project_data) => {
+            // Add projects to list
+            setProjects([...projects, ...project_data.projects])
+        })
+    }, [])
 
     return (
         <Stack>

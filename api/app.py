@@ -4,9 +4,14 @@ from database import Database
 app = Flask(__name__)
 db = Database()
 
-@app.route("/api/test")
-def home():
-    return {"TEST": "HOME PAGE"}
+@app.route("/api/projects", methods=["GET"])
+def get_projects():
+    projects = db.get_projects()
+    projects.reverse()
+    if projects:
+        return {"projects": projects}, 200
+    
+    return {"status": "failed"}, 400
 
 @app.route("/api/create-project", methods=["POST"])
 def create_project():

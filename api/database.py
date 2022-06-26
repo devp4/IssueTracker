@@ -20,7 +20,24 @@ class Database:
     def start(self):
         self.connection = psycopg2.connect(**self.config)
         self.cursor = self.connection.cursor()
-    
+
+    def get_projects(self):
+        self.cursor.execute("SELECT * FROM projects")
+        list_projects = self.cursor.fetchall()
+        projects = []
+
+        # Convert list of projects into JSON format
+        for project in list_projects:
+            projects.append({
+                "id": project[0],
+                "title": project[1],
+                "description": project[2],
+                "language": project[3],
+                "is_open": project[4],
+                "time": project[5]
+            })
+        return projects
+
     def create_project(self, data):
         ''''
         Add new row into Projects table with given data
@@ -59,7 +76,7 @@ class Database:
 
         status = self.cursor.execute('''
                     DELETE FROM projects 
-                    WHERE id=%s''', (project_id))
+                    WHERE id=%s''', (project_id,))
 
         if status == None:
             # SUCCESS
