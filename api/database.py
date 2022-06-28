@@ -4,26 +4,25 @@ import json
 class Database:
 
     def __init__(self):
-        self.config = {}
-        
-        self.get_config()
+        self.connection = None
         self.start()
-    
-    def __del__(self):
-        self.cursor.close()
-        self.connection.close()
-
-    def get_config(self):
-        with open("config.json") as file:
-            self.config = json.load(file)
 
     def start(self):
+        with open("config.json") as file:
+            self.config = json.load(file)
+        
         self.connection = psycopg2.connect(**self.config)
-        self.cursor = self.connection.cursor()
+
+    def __del__(self):
+        self.connection.close()
 
     def get_projects(self):
-        self.cursor.execute("SELECT * FROM projects")
-        list_projects = self.cursor.fetchall()
+        with self.connection as conn:
+            with conn.cursor() as cursor: 
+                cursor.execute("SELECT * FROM projects")
+
+                list_projects = cursor.fetchall()
+        
         projects = []
 
         # Convert list of projects into JSON format
@@ -36,6 +35,7 @@ class Database:
                 "is_open": project[4],
                 "time": project[5]
             })
+        
         return projects
 
     def create_project(self, data):
@@ -52,15 +52,17 @@ class Database:
                     time: str
                 }
         '''
-        
-        status = self.cursor.execute('''
-                    INSERT INTO projects (title, description, langauge, is_open, time)
-                    VALUES(%(title)s, %(description)s, %(language)s, %(is_open)s, %(time)s) RETURNING id''', data)
+        with self.connection as conn:
+            with conn.cursor() as cursor: 
+                status = cursor.execute('''
+                            INSERT INTO projects (title, description, langauge, is_open, time)
+                            VALUES(%(title)s, %(description)s, %(language)s, %(is_open)s, %(time)s) RETURNING id''', data)
+                
+                proj_id = cursor.fetchone()[0]
 
         if status == None:
             # SUCCESS
-            self.connection.commit()
-            return self.cursor.fetchone()[0]
+            return proj_id
         else:
             # FAIL
             return False
@@ -73,14 +75,14 @@ class Database:
             id: int
         
         '''
-
-        status = self.cursor.execute('''
-                    DELETE FROM projects 
-                    WHERE id=%s''', (project_id,))
+        with self.connection as conn:
+                with conn.cursor() as cursor:                     
+                    status = cursor.execute('''
+                                DELETE FROM projects 
+                                WHERE id=%s''', (project_id,))
 
         if status == None:
             # SUCCESS
-            self.connection.commit()
             return True
         else:
             # FAIL

@@ -8,11 +8,9 @@ db = Database()
 def get_projects():
     projects = db.get_projects()
     projects.reverse()
-    if projects:
-        return {"projects": projects}, 200
     
-    return {"status": "failed"}, 400
-
+    return {"projects": projects}, 200
+    
 @app.route("/api/create-project", methods=["POST"])
 def create_project():
     data = request.get_json()
