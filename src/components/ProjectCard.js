@@ -15,6 +15,14 @@ const ProjectCard = ({ project, setDeleteID }) => {
     const handleDeleteShow = () => setDeleteShow(true)
     const handleDeleteClose = () => setDeleteShow(false)
     
+    const getLanguage = (language) => {
+        if (language === "None") {
+            return null
+        }
+
+        return language
+    }
+    
     return (
         <Card>
             <Modal show={editShow} onHide={handleEditClose}>
@@ -34,9 +42,9 @@ const ProjectCard = ({ project, setDeleteID }) => {
                 </Modal.Body>
             </Modal>
             <Card.Header>{project.title}
-                <Badge className="language-badge" pill bg="">{project.language}
+                <Badge className="language-badge" pill bg="">{getLanguage(project.language)}
                 </Badge>{' '}
-                <Badge className="status-badge" id="status-badge" pill bg="">{project.status}
+                <Badge className="status-badge" id="status-badge" pill bg="">{project.is_open ? "Open" : "Closed"}
                 </Badge>{' '}
                 <OverlayTrigger placement="top" overlay={<Tooltip>Issues</Tooltip>}>
                     <Button className="view-btn" onClick={handleEditShow}>

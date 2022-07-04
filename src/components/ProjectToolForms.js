@@ -5,7 +5,7 @@ import "./component-styles/ProjectForm.css"
 export const ProjectEditForm = ( { project, handleEditClose}) => {
 
     const checkStatus = () => {
-        if (project.status === "Open") {
+        if (project.is_open) {
             return false
         }
         
@@ -17,15 +17,31 @@ export const ProjectEditForm = ( { project, handleEditClose}) => {
     const [checked, setChecked] = useState(() => checkStatus())
 
     const handleStatus = () => {
-        if (project.status === "Open") {
-            project.status = "Closed"
+        if (project.is_open) {
+            project.is_open = false
             document.getElementById("status-badge").style.backgroundColor = "#FF0000"
+            document.getElementById("status-badge").innerHTML = "Closed"
         }
 
         else {
-            project.status = "Open"
+            project.is_open = true
             document.getElementById("status-badge").style.backgroundColor = "#008000"
+            document.getElementById("status-badge").innerHTML = "Open"
         }
+    }
+
+    // Update Post function 
+    async function updatePost(data) {
+        const response = await fetch("/api/update-project", {
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+        )
+    
+        return response
     }
 
     const getFormData = (e) => {
@@ -36,7 +52,7 @@ export const ProjectEditForm = ( { project, handleEditClose}) => {
             title: form[0].value,
             description: form[1].value,
             language: form[2].value,
-            status: "Open"
+            is_open: project.is_open
         }
 
         // Check Blanks
@@ -53,13 +69,26 @@ export const ProjectEditForm = ( { project, handleEditClose}) => {
         }
 
         if (data.language === "DELETE") {
-            data.language = null
+            data.language = "None"
         }
 
-        project.title = data.title
-        project.description = data.description
-        project.language = data.language
-        handleEditClose()
+        const response = updatePost(data)
+        response.then((response) => {
+            // Check if response was valid
+            if (response.status === 200) {
+                return response.json()
+            }
+            else {
+                alert("Count Not Update Project")
+                return
+            }
+        }).then((json_data)=> {
+            // Add project 
+            project.title = data.title
+            project.description = data.description
+            project.language = data.language
+            handleEditClose()
+        })
     }
 
     return (

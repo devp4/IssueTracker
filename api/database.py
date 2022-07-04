@@ -55,7 +55,7 @@ class Database:
         with self.connection as conn:
             with conn.cursor() as cursor: 
                 status = cursor.execute('''
-                            INSERT INTO projects (title, description, langauge, is_open, time)
+                            INSERT INTO projects (title, description, language, is_open, time)
                             VALUES(%(title)s, %(description)s, %(language)s, %(is_open)s, %(time)s) RETURNING id''', data)
                 
                 proj_id = cursor.fetchone()[0]
@@ -63,9 +63,9 @@ class Database:
         if status == None:
             # SUCCESS
             return proj_id
-        else:
-            # FAIL
-            return False
+
+        # FAIL
+        return False
 
     def delete_project(self, project_id):
         ''''
@@ -84,8 +84,36 @@ class Database:
         if status == None:
             # SUCCESS
             return True
-        else:
-            # FAIL
-            return False
 
+        # FAIL
+        return False
+
+    def update_project(self, data):
+        '''
+        Update project given new data 
+                
+        Args:
+            data: 
+                {   
+                    id: int
+                    title: str
+                    description: str
+                    language: str
+                    is_open: bool
+                    time: str
+                }
+        '''
+
+        with self.connection as conn:
+            with conn.cursor() as cursor:
+                status = cursor.execute('''
+                    UPDATE projects SET 
+                    title = %(title)s, description = %(description)s, language = %(language)s, is_open = %(is_open)s
+                    WHERE id = %(id)s
+                ''', data)
+        
+        if status == None:
+            return True
+        
+        return False
 

@@ -27,3 +27,13 @@ def delete_post(project_id):
         return project_id, 200
     
     return project_id, 404
+
+@app.route("/api/update-project", methods=["POST"])
+def update_project():
+    data = request.get_json()
+    status = db.update_project(data)
+
+    if status:
+        return {"status": "updated"}
+    
+    return {"status": "failed"}, 404
