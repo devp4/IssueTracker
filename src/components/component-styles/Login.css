@@ -1,0 +1,101 @@
+.login-h1 {
+    font-size: 100px;
+    text-align: center;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.login-div {
+    margin-top: 7%;
+    background-color: #1d1d42;
+}
+
+.signin-btn {
+    background-color: #383799;
+    font-family: 'Quicksand', sans-serif;
+    border: 3px solid #232256;
+    margin-top: 7%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    font-size: 30px;
+    height: 60px;
+    width: 150px;
+    color: white;
+}
+
+.signin-btn:focus {
+    border: 3px solid #232256;
+    background-color: #4240b1;
+    box-shadow: none !important;
+}
+
+.signin-btn:hover {
+    border: 3px solid #232256;
+    background-color: #4240b1;
+}
+
+
+/* TEXT FADING: https://medium.com/cloud-native-the-gathering/how-to-use-css-to-fade-in-and-fade-out-html-text-and-pictures-f45c11364f08 */
+.fade-in {
+    margin-top: 3%;
+    font-size: 40px;
+    text-align: center;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+
+    animation: fadeIn ease 7s;
+    -webkit-animation: fadeIn ease 7s;
+    -moz-animation: fadeIn ease 7s;
+    -o-animation: fadeIn ease 7s;
+    -ms-animation: fadeIn ease 7s;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}

@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap"
 import "./component-styles/MainContainer.css"
+import IssueContainer from "./IssueContainer"
 import ProjectContainer from "./ProjectContainer"
 
 const MainContainer = () => {

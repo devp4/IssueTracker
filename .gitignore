@@ -9,6 +9,8 @@ api/__pycache__
 api/venv
 api/config.json
 
+firebase-tools.js
+
 # testing
 /coverage
 
