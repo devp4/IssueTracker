@@ -1,4 +1,4 @@
-import { Nav, Navbar } from "react-bootstrap"
+import { Navbar } from "react-bootstrap"
 import { IconContext } from "react-icons";
 import { BsBugFill } from "react-icons/bs";
 import "./component-styles/NavBar.css"

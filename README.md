@@ -8,6 +8,7 @@ pip install -r requirements.txt
 # Database Config
 ```
 Update /api/config.json with your database information
+Update firebase.js with your Firebase configuration
 ```
 
 # Start React App
@@ -18,7 +19,6 @@ npm start (starts website)
 ```
 
 # Current State: 
-- Basic frontend complete 
-- Project page frontend complete 
-- Working on database connection 
+- Working on Login page
+- Working on group create/join
 
