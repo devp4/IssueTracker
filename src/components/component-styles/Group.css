@@ -1,0 +1,126 @@
+.group-div {
+    margin-top: 7%;
+    background-color: #1d1d42;
+}
+
+.create-group-btn {
+    background-color: #383799;
+    font-family: 'Quicksand', sans-serif;
+    border: 3px solid #232256;
+    margin-top: 0%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    font-size: 30px;
+    height: 60px;
+    width: 225px;
+    color: white;
+}
+
+.create-group-btn:focus {
+    border: 3px solid #232256;
+    background-color: #4240b1;
+    box-shadow: none !important;
+}
+
+.create-group-btn:hover {
+    border: 3px solid #232256;
+    background-color: #4240b1;
+}
+
+
+.join-group-btn {
+    background-color: #383799;
+    font-family: 'Quicksand', sans-serif;
+    border: 3px solid #232256;
+    margin-top: 0%;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+    font-size: 30px;
+    height: 60px;
+    width: 225px;
+    color: white;
+}
+
+.join-group-btn:focus {
+    border: 3px solid #232256;
+    background-color: #4240b1;
+    box-shadow: none !important;
+}
+
+.join-group-btn:hover {
+    border: 3px solid #232256;
+    background-color: #4240b1;
+}
+
+.join-btn {
+    align-self: center;
+    background-color: rgb(0, 128, 0);
+    font-size: 18px;
+    line-height: 19px;
+    width: 125px;
+    margin-left: 170px;
+    font-family: 'Quicksand', sans-serif;
+    border: 3px solid rgb(2, 93, 2);
+    border-radius: 25px;
+}
+
+.join-btn:focus {
+    background-color: rgb(2, 162, 2);
+    border: 3px solid rgb(2, 93, 2);
+    box-shadow: none !important;
+}
+
+.join-btn:hover {   
+    background-color: rgb(2, 162, 2);
+    border: 3px solid rgb(2, 93, 2);
+    box-shadow: none !important;
+}
+
+.group-header {
+    background-color: #1c1c47;
+    border-bottom: 1px solid white;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.join-group {
+    margin-left: 20%;
+    width: 300px;
+    border: 3px solid #3e3d9a;
+}
+
+.card-join-title {
+    margin-bottom: 3%;
+}
+
+.card-join-btn {
+    background-color: rgb(0, 128, 0);
+    font-size: 15px;
+    line-height: 10px;
+    width: 60px;
+    float: right;
+    font-family: 'Quicksand', sans-serif;
+    border: 3px solid rgb(2, 93, 2);
+    border-radius: 25px;
+}
+
+.card-join-btn:hover {   
+    background-color: rgb(2, 162, 2);
+    border: 3px solid rgb(2, 93, 2);
+    box-shadow: none !important;
+}
+
+.card-join-btn:hover {   
+    background-color: rgb(2, 162, 2);
+    border: 3px solid rgb(2, 93, 2);
+    box-shadow: none !important;
+}
