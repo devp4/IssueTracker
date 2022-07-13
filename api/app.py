@@ -4,12 +4,35 @@ from database import Database
 app = Flask(__name__)
 db = Database()
 
+@app.route("/api/create-user", methods=["POST"])
+def create_user():
+    user_info = request.get_json()
+    user = db.create_user(user_info=user_info)
+    if user:
+        return user, 200
+    
+    return user, 404
+
+@app.route("/api/create-group", methods=["POST"])
+def create_group():
+    data = request.get_json()
+    group_id = db.create_group(group_data=data)
+
+    if group_id:
+        return {"group_id": group_id}, 200
+    
+    return group_id, 404
+
+
 @app.route("/api/projects", methods=["GET"])
 def get_projects():
     projects = db.get_projects()
     projects.reverse()
     
-    return {"projects": projects}, 200
+    if projects:
+        return {"projects": projects}, 200
+    
+    return projects, 404
     
 @app.route("/api/create-project", methods=["POST"])
 def create_project():
@@ -34,6 +57,6 @@ def update_project():
     status = db.update_project(data)
 
     if status:
-        return {"status": "updated"}
+        return {"status": "updated"}, 200
     
     return {"status": "failed"}, 404

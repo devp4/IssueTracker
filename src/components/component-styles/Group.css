@@ -124,3 +124,27 @@
     border: 3px solid rgb(2, 93, 2);
     box-shadow: none !important;
 }
+
+.create-btn {
+    align-self: center;
+    background-color: rgb(0, 128, 0);
+    font-size: 18px;
+    line-height: 19px;
+    width: 150px;
+    margin-left: 170px;
+    font-family: 'Quicksand', sans-serif;
+    border: 3px solid rgb(2, 93, 2);
+    border-radius: 25px;
+}
+
+.create-btn:focus {
+    background-color: rgb(2, 162, 2);
+    border: 3px solid rgb(2, 93, 2);
+    box-shadow: none !important;
+}
+
+.create-btn:hover {   
+    background-color: rgb(2, 162, 2);
+    border: 3px solid rgb(2, 93, 2);
+    box-shadow: none !important;
+}

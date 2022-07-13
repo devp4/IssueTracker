@@ -15,6 +15,52 @@ class Database:
 
     def __del__(self):
         self.connection.close()
+    
+    def create_user(self, user_info):
+        ''' 
+        Add a new user to Users table
+
+        user_info: dict 
+            id: string 
+            username: string
+            email: string
+        '''
+
+        with self.connection as conn:
+            with conn.cursor() as cursor:
+                status = cursor.execute('''
+                    INSERT INTO users VALUES (%(id)s, %(email)s, %(username)s)
+                    ON CONFLICT DO NOTHING
+                ''', user_info)
+
+        if status == None:
+            return user_info
+        
+        return False
+    
+    def create_group(self, group_data):
+        '''
+        Add group to Groups table
+        '''
+        import random
+        import string
+
+        code = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+        group_data["group_id"] = code
+        
+        with self.connection as conn:
+            with conn.cursor() as cursor:
+                status = cursor.execute('''
+                    INSERT INTO groups VALUES (%(user_id)s, %(group_id)s, %(name)s)
+                ''', group_data)
+        
+        if status == None:
+            return code 
+        
+        return False
+
+    def get_groups(self, user):
+        pass
 
     def get_projects(self):
         with self.connection as conn:

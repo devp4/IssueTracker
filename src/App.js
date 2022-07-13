@@ -18,7 +18,7 @@ function App() {
                 <NavBar></NavBar>
                 <MainContainer></MainContainer>
               </div>
-            ) : <Group></Group>
+            ) : <Group user={user} setGroup={setGroup}></Group>
       ) : <Login setUser={setUser}></Login>}
     </div>
   );
