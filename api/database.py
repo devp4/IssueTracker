@@ -59,8 +59,26 @@ class Database:
         
         return False
 
-    def get_groups(self, user):
-        pass
+    def get_groups(self, user_id):
+        with self.connection as conn:
+            with conn.cursor() as cursor:
+                cursor.execute("SELECT * FROM groups WHERE user_id=%s", (user_id,))
+
+                list_groups = cursor.fetchall()
+
+        groups = []
+
+        for group in list_groups:
+            val = {
+                "user_id": group[0],
+                "group_id": group[1],
+                "name": group[2]
+            }
+
+            groups.append(val)
+
+        return groups
+
 
     def get_projects(self):
         with self.connection as conn:
@@ -68,18 +86,20 @@ class Database:
                 cursor.execute("SELECT * FROM projects")
 
                 list_projects = cursor.fetchall()
-        
+
         projects = []
 
         # Convert list of projects into JSON format
         for project in list_projects:
             projects.append({
                 "id": project[0],
-                "title": project[1],
-                "description": project[2],
-                "language": project[3],
-                "is_open": project[4],
-                "time": project[5]
+                "group_id": project[1],
+                "title": project[2],
+                "description": project[3],
+                "language": project[4],
+                "is_open": project[5],
+                "time": project[6],
+                "created_by": project[7]
             })
         
         return projects
@@ -90,19 +110,21 @@ class Database:
         
         Args:
             data: 
-                {
+                {   
+                    group_id: str
                     title: str
                     description: str
                     language: str
                     is_open: bool
                     time: str
+                    created_by: str
                 }
         '''
         with self.connection as conn:
             with conn.cursor() as cursor: 
                 status = cursor.execute('''
-                            INSERT INTO projects (title, description, language, is_open, time)
-                            VALUES(%(title)s, %(description)s, %(language)s, %(is_open)s, %(time)s) RETURNING id''', data)
+                            INSERT INTO projects (group_id, title, description, language, is_open, time, created_by)
+                            VALUES(%(group_id)s, %(title)s, %(description)s, %(language)s, %(is_open)s, %(time)s, %(created_by)s) RETURNING id''', data)
                 
                 proj_id = cursor.fetchone()[0]
 

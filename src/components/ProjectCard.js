@@ -83,7 +83,7 @@ const ProjectCard = ({ project, setDeleteID }) => {
                     </Col>
                     <Col>
                         <Card.Text className="right-footer">
-                            By: Test Author
+                            {`By: ${project.created_by}`}
                         </Card.Text>
                     </Col>
                 </Row>

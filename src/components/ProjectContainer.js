@@ -7,7 +7,7 @@ import "./component-styles/ProjectContainer.css"
 import ProjectForm from "./ProjectForm"
 
 
-const ProjectContainer = () => {
+const ProjectContainer = ({ user, group }) => {
 
     const [show, setShow] = useState(false)
     const [projects, setProjects] = useState([])
@@ -122,7 +122,7 @@ const ProjectContainer = () => {
                     Create Project
                 </Modal.Header>
                 <Modal.Body>
-                    <ProjectForm projects={projects} setProjects={setProjects} handleClose={handleClose}></ProjectForm>
+                    <ProjectForm projects={projects} setProjects={setProjects} handleClose={handleClose} user={user} group={group}></ProjectForm>
                 </Modal.Body>
             </Modal>
             {deleteID ? handleDelete() : null}

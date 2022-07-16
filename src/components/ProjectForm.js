@@ -2,7 +2,7 @@ import { Form, Button } from "react-bootstrap"
 import { useState } from "react"
 import "./component-styles/ProjectForm.css"
 
-const ProjectForm = ( { projects, setProjects, handleClose }) => {
+const ProjectForm = ( { projects, setProjects, handleClose, user, group}) => {
     
     const [errors, setErrors] = useState({})
 
@@ -45,11 +45,13 @@ const ProjectForm = ( { projects, setProjects, handleClose }) => {
         e.preventDefault()
         const form = e.target
         const data = {
+            group_id: group,
             title: form[0].value,
             description: form[1].value,
             language: form[2].value,
             is_open: true,
-            time: getTime()
+            time: getTime(),
+            created_by: user.username
         }
         
         // Error Validation

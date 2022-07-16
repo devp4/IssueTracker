@@ -23,14 +23,26 @@ def create_group():
     
     return group_id, 404
 
+@app.route("/api/get-groups/<user_id>", methods=["GET"])
+def get_groups(user_id):
+    groups = db.get_groups(user_id=user_id)
+
+    if groups:
+        return {"groups": groups}, 200
+    
+    return groups, 404
+
 
 @app.route("/api/projects", methods=["GET"])
 def get_projects():
     projects = db.get_projects()
     projects.reverse()
-    
+
     if projects:
         return {"projects": projects}, 200
+    
+    elif projects == []:
+        return {"projects": []}, 200
     
     return projects, 404
     

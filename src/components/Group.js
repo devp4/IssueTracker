@@ -46,10 +46,47 @@ const Group = ( { user, setGroup }) => {
         })
     }
 
+    async function getGroups(user) {
+        const response = await fetch(`/api/get-groups/${user.id}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            }
+        )
+    
+        return response
+    }
+
+
+    const handleJoinGroups = (user) => {
+        const response = getGroups(user)
+        response.then((response) => {
+            // Check if response was valid
+            if (response.status === 200) {
+                return response.json()
+            }
+            else {
+                alert("Count Not Get Groups")
+                return
+            }
+        }).then((group_info)=> {
+            // Set groups
+            if (group_info) {
+                setGroups([...group_info.groups])
+                setjoinShow(true)
+            }
+        })
+    }
+
+    const joinGroup = (group_id) => {
+        setGroup(group_id)
+    }
+
     return(
         <div className="group-div">
             <Button className="create-group-btn" onClick={() => setcreateShow(true)}>Create Group</Button>
-            <Button className="join-group-btn" onClick={() => setjoinShow(true)}>Join Group</Button>
+            <Button className="join-group-btn" onClick={() => handleJoinGroups(user)}>Join Group</Button>
             
             <Modal show={createShow} onHide={() => setcreateShow(false)}>
                 <Modal.Header closeButton>
@@ -73,7 +110,7 @@ const Group = ( { user, setGroup }) => {
                     </InputGroup>
                     <Button className="join-btn">Join Group</Button>
                     <Card.Header className="group-header">Available Groups</Card.Header>
-                    {groups ? groups.map((group) => <Card.Title className="card-join-title">{group.title}<Button className="card-join-btn">Join</Button></Card.Title>): null}
+                    {groups ? groups.map((group) => <Card.Title key={group.group_id} className="card-join-title">{group.name}<Button className="card-join-btn" onClick={() => joinGroup(group.group_id)}>Join</Button></Card.Title>): null}
                 </Modal.Body>
             </Modal>
         </div>
