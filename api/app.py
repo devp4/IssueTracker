@@ -33,9 +33,9 @@ def get_groups(user_id):
     return groups, 404
 
 
-@app.route("/api/projects", methods=["GET"])
-def get_projects():
-    projects = db.get_projects()
+@app.route("/api/projects/<group_id>", methods=["GET"])
+def get_projects(group_id):
+    projects = db.get_projects(group_id=group_id)
     projects.reverse()
 
     if projects:

@@ -64,7 +64,7 @@ const ProjectContainer = ({ user, group }) => {
 
     useEffect(() => {
         // Get projects when website is first rendered
-        fetch("api/projects").then((data) => {
+        fetch(`api/projects/${group}`).then((data) => {
             return data.json()
         }).then((project_data) => {
             // Add projects to list

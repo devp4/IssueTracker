@@ -15,7 +15,7 @@ function App() {
       {user ? (
             group ? (
               <div className="App">
-                <NavBar></NavBar>
+                <NavBar setGroup={setGroup}></NavBar>
                 <MainContainer user={user} group={group}></MainContainer>
               </div>
             ) : <Group user={user} setGroup={setGroup}></Group>

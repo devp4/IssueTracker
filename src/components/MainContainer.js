@@ -3,12 +3,12 @@ import "./component-styles/MainContainer.css"
 import IssueContainer from "./IssueContainer"
 import ProjectContainer from "./ProjectContainer"
 
-const MainContainer = () => {
+const MainContainer = ({ user, group }) => {
     return (
             <Container fluid>
                 <Row>
                     <Col sm={6}>
-                        <ProjectContainer></ProjectContainer>
+                        <ProjectContainer user={user} group={group}></ProjectContainer>
                     </Col>
                 </Row>
             </Container>

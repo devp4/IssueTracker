@@ -80,10 +80,10 @@ class Database:
         return groups
 
 
-    def get_projects(self):
+    def get_projects(self, group_id):
         with self.connection as conn:
             with conn.cursor() as cursor: 
-                cursor.execute("SELECT * FROM projects")
+                cursor.execute("SELECT * FROM projects WHERE group_id=%s", (group_id,))
 
                 list_projects = cursor.fetchall()
 
