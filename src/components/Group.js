@@ -1,11 +1,15 @@
 import { useState } from "react"
-import { Button, Modal, InputGroup, Form, Card} from "react-bootstrap"
+import { Button, Modal, InputGroup, Form, Card, Row, Col} from "react-bootstrap"
 import "./component-styles/Group.css"
 
 const Group = ( { user, setGroup }) => {
     
     const [createShow, setcreateShow] = useState(false)
     const [joinShow, setjoinShow] = useState(false)
+
+    const [leaveShow, setleaveShow] = useState(false)
+    const [leavingGroup, setleavingGroup] = useState(null)
+
     const [groups, setGroups] = useState([])
 
     async function createGroup(data) {
@@ -83,6 +87,66 @@ const Group = ( { user, setGroup }) => {
         setGroup(group_id)
     }
 
+
+    // Leaving functions 
+    const handleGroupSplice = () => {
+        let ind = 0
+        for (let group of groups) {
+            if (group.id === leaveGroup.id) {
+                groups.splice(ind, 1)
+                setGroups([...groups])
+                break
+            }
+
+            ind += 1
+        }
+    }
+
+    const leaveGroup = (group) => {
+        setleavingGroup(group)
+        setjoinShow(false)
+        setleaveShow(true)
+    }
+
+    const handleLeaveCancel = () => {
+        setleavingGroup(null)
+        setleaveShow(false)
+        setjoinShow(true)
+    }
+
+    async function deleteGroup() {
+        const response = await fetch(`/api/delete-group/${leavingGroup.group_id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            }
+        )
+    
+        return response
+    }
+
+    const handleLeave = () => {
+        const response = deleteGroup()
+        response.then((response) => {
+            // Check if response was valid
+            if (response.status === 200) {
+                return response.json()
+            }
+            else {
+                alert("Count Not Delete Group")
+                return
+            }
+        }).then((groups)=> {
+            // Set groups
+            if (groups) {
+                handleGroupSplice()
+                setleaveShow(false)
+                setjoinShow(true)
+            }
+        })
+    }
+
     return(
         <div className="group-div">
             <Button className="create-group-btn" onClick={() => setcreateShow(true)}>Create Group</Button>
@@ -110,7 +174,35 @@ const Group = ( { user, setGroup }) => {
                     </InputGroup>
                     <Button className="join-btn">Join Group</Button>
                     <Card.Header className="group-header">Available Groups</Card.Header>
-                    {groups ? groups.map((group) => <Card.Title key={group.group_id} className="card-join-title">{group.name}<Button className="card-join-btn" onClick={() => joinGroup(group.group_id)}>Join</Button></Card.Title>): null}
+                    {groups ? groups.map(
+                        (group) => 
+                            <Card.Title key={group.group_id} className="card-join-title">{group.name}
+                                <Button className="card-leave-btn" onClick={() => leaveGroup(group)}>Leave</Button>
+                                <Button className="card-join-btn" onClick={(() => joinGroup(group.group_id))}>Join</Button>
+                            </Card.Title>): null}
+                </Modal.Body>
+            </Modal>
+
+            <Modal show={leaveShow} onHide={() => setleaveShow(false)}>
+                <Modal.Header>
+                    Leaving {leavingGroup ? leavingGroup.name : "Group"}
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>Are you sure you want to leave this group?</Form.Label>
+                        </Form.Group>
+                        <Form.Group>
+                            <Row>
+                                <Col>
+                                    <Button className="delete-proj-btn" onClick={handleLeave}>Leave</Button>
+                                </Col>
+                                <Col>
+                                    <Button className="cancel-proj-btn" onClick={handleLeaveCancel}>Cancel</Button>
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                    </Form>
                 </Modal.Body>
             </Modal>
         </div>

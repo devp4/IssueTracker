@@ -44,7 +44,7 @@ const ProjectCard = ({ project, setDeleteID }) => {
             <Card.Header>{project.title}
                 <Badge className="language-badge" pill bg="">{getLanguage(project.language)}
                 </Badge>{' '}
-                <Badge className="status-badge" id="status-badge" pill bg="">{project.is_open ? "Open" : "Closed"}
+                <Badge className="status-badge" id={project.id} pill bg="">{project.is_open ? "Open" : "Closed"}
                 </Badge>{' '}
                 <OverlayTrigger placement="top" overlay={<Tooltip>Issues</Tooltip>}>
                     <Button className="view-btn" onClick={handleEditShow}>

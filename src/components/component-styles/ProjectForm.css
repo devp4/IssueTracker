@@ -120,31 +120,6 @@
 
 /* <----- Delete and Cancel Buttons -----> */
 .delete-proj-btn {
-    background-color: rgb(0, 128, 0);
-    font-size: 18px;
-    line-height: 19px;
-    width: 100px;
-    font-family: 'Quicksand', sans-serif;
-    margin-top: 0.5%;
-    border: 3px solid rgb(2, 93, 2);
-    float: right;
-    border-radius: 25px;
-    margin-top: 5%;
-}
-
-.delete-proj-btn:focus {
-    background-color: rgb(2, 162, 2);
-    border: 3px solid rgb(2, 93, 2);
-    box-shadow: none !important;
-}
-
-.delete-proj-btn:hover {   
-    background-color: rgb(2, 162, 2);
-    border: 3px solid rgb(2, 93, 2);
-    box-shadow: none !important;
-}
-
-.cancel-proj-btn {
     background-color: rgb(171, 5, 5);
     font-size: 18px;
     line-height: 19px;
@@ -152,14 +127,39 @@
     font-family: 'Quicksand', sans-serif;
     margin-top: 0.5%;
     border: 3px solid rgb(120, 3, 3);
+    float: right;
+    border-radius: 25px;
+    margin-top: 5%;
+}
+
+.delete-proj-btn:focus {
+    background-color: rgb(211, 6, 6);
+    border: 3px solid rgb(120, 3, 3);
+    box-shadow: none !important;
+}
+
+.delete-proj-btn:hover {   
+    background-color: rgb(211, 6, 6);
+    border: 3px solid rgb(120, 3, 3);
+    box-shadow: none !important;
+}
+
+.cancel-proj-btn {
+    background-color: rgb(0, 128, 0);
+    font-size: 18px;
+    line-height: 19px;
+    width: 100px;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 0.5%;
+    border: 3px solid rgb(2, 93, 2);
     float: left;
     border-radius: 25px;
     margin-top: 5%;
 }
 
 .cancel-proj-btn:hover {
-    background-color: rgb(211, 6, 6);
-    border: 3px solid rgb(120, 3, 3);
+    background-color: rgb(2, 162, 2);
+    border: 3px solid rgb(2, 93, 2);
 }
 
 .close-switch {

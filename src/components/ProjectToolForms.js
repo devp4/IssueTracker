@@ -19,14 +19,14 @@ export const ProjectEditForm = ( { project, handleEditClose}) => {
     const handleStatus = () => {
         if (project.is_open) {
             project.is_open = false
-            document.getElementById("status-badge").style.backgroundColor = "#FF0000"
-            document.getElementById("status-badge").innerHTML = "Closed"
+            document.getElementById(project.id).style.backgroundColor = "#FF0000"
+            document.getElementById(project.id).innerHTML = "Closed"
         }
 
         else {
             project.is_open = true
-            document.getElementById("status-badge").style.backgroundColor = "#008000"
-            document.getElementById("status-badge").innerHTML = "Open"
+            document.getElementById(project.id).style.backgroundColor = "#008000"
+            document.getElementById(project.id).innerHTML = "Open"
         }
     }
 

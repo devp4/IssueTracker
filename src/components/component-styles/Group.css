@@ -148,3 +148,27 @@
     border: 3px solid rgb(2, 93, 2);
     box-shadow: none !important;
 }
+
+.card-leave-btn {
+    background-color: rgb(165, 6, 6);
+    font-size: 14px;
+    line-height: 10px;
+    width: 67px;
+    float: right;
+    font-family: 'Quicksand', sans-serif;
+    margin-left: 2%;
+    border: 3px solid rgb(110, 2, 2);
+    border-radius: 25px;
+}
+
+.card-leave-btn:hover {   
+    background-color: rgb(198, 5, 5);
+    border: 3px solid rgb(110, 2, 2);
+    box-shadow: none !important;
+}
+
+.card-leave-btn:focus {   
+    background-color: rgb(198, 5, 5);
+    border: 3px solid rgb(110, 2, 2);
+    box-shadow: none !important;
+}

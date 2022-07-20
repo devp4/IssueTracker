@@ -32,6 +32,15 @@ def get_groups(user_id):
     
     return groups, 404
 
+@app.route("/api/delete-group/<group_id>", methods=["DELETE"])
+def delete_group(group_id):
+    groups = db.delete_group(group_id=group_id)
+
+    if groups:
+        return {"group_id": group_id}, 200
+    
+    return groups, 404
+
 
 @app.route("/api/projects/<group_id>", methods=["GET"])
 def get_projects(group_id):

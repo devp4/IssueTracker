@@ -79,6 +79,12 @@ class Database:
 
         return groups
 
+    def delete_group(self, group_id):
+        with self.connection as conn:
+            with conn.cursor() as cursor: 
+                cursor.execute("DELETE FROM groups WHERE group_id=%s", (group_id,))
+
+        return group_id
 
     def get_projects(self, group_id):
         with self.connection as conn:
