@@ -147,6 +147,39 @@ const Group = ( { user, setGroup }) => {
         })
     }
 
+    async function isCodeValid() {
+        let checkCode = document.getElementById("join-group-inp").value
+        console.log(checkCode)
+
+        const response = await fetch(`/api/check-group/${checkCode}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            }
+        )
+    
+        return response
+    }
+
+    const checkCode = () => {
+        const response = isCodeValid()
+        response.then((response) => {
+            // Check if response was valid
+            if (response.status === 200) {
+                return response.json()
+            }
+            else {
+                alert("Count Not Check Group")
+                return
+            }
+        }).then((data)=> {
+            if (data) {
+                console.log(groups)
+            }
+        })
+    }
+
     return(
         <div className="group-div">
             <Button className="create-group-btn" onClick={() => setcreateShow(true)}>Create Group</Button>
@@ -169,10 +202,10 @@ const Group = ( { user, setGroup }) => {
                     Join Group
                 </Modal.Header>
                 <Modal.Body>
-                    <InputGroup id="join-group-inp" className="mb-3">
-                        <Form.Control placeholder="Group Code"></Form.Control>
+                    <InputGroup className="mb-3">
+                        <Form.Control id="join-group-inp" placeholder="Group Code"></Form.Control>
                     </InputGroup>
-                    <Button className="join-btn">Join Group</Button>
+                    <Button className="join-btn" onClick={checkCode}>Join Group</Button>
                     <Card.Header className="group-header">Available Groups</Card.Header>
                     {groups ? groups.map(
                         (group) => 
