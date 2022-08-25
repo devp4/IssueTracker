@@ -78,7 +78,7 @@ const ProjectForm = ( { projects, setProjects, handleClose, user, group}) => {
                 return response.json()
             }
             else {
-                alert("Count Not Create Project")
+                alert("Could Not Create Project")
                 return
             }
         }).then((json_data)=> {

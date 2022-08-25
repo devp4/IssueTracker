@@ -37,7 +37,7 @@ const Login = ({ setUser }) => {
                         return response.json()
                     }
                     else {
-                        alert("Count Not Create User")
+                        alert("Could Not Create User")
                         return
                     }
                 }).then((user_data)=> {

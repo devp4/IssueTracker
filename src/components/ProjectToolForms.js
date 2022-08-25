@@ -79,7 +79,7 @@ export const ProjectEditForm = ( { project, handleEditClose}) => {
                 return response.json()
             }
             else {
-                alert("Count Not Update Project")
+                alert("Could Not Update Project")
                 return
             }
         }).then((json_data)=> {
@@ -138,7 +138,7 @@ export const ProjectDeleteForm = ({ project, handleDeleteClose, setDeleteID }) =
                 setDeleteID(project.id)
             }
             else {
-                alert("Count Not Delete Project")
+                alert("Could Not Delete Project")
                 return
             }
         })
