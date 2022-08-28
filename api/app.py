@@ -49,12 +49,12 @@ def delete_group(group_id):
 
 @app.route("/api/check-group/<group_id>", methods=["GET"])
 def check_group(group_id):
-    valid = db.check_group(group_id)
+    valid, valid_id, name = db.check_group(group_id)
     
     if valid: 
-        return {"status": True}
+        return {"status": True, "id": valid_id, "name": name}
     
-    return {"status": False}
+    return {"status": False, "id": valid_id, "name": name}
 
 
 @app.route("/api/projects/<group_id>", methods=["GET"])

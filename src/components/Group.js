@@ -11,6 +11,7 @@ const Group = ( { user, setGroup }) => {
     const [leavingGroup, setleavingGroup] = useState(null)
 
     const [groups, setGroups] = useState([])
+    const [validCode, setvalidCode] = useState(false)
 
     async function createGroup(data) {
         const response = await fetch("/api/create-group", {
@@ -38,7 +39,7 @@ const Group = ( { user, setGroup }) => {
                 return response.json()
             }
             else {
-                alert("Count Not Create Group")
+                alert("Could Not Create Group")
                 return
             }
         }).then((group_info)=> {
@@ -71,7 +72,7 @@ const Group = ( { user, setGroup }) => {
                 return response.json()
             }
             else {
-                alert("Count Not Get Groups")
+                alert("Could Not Get Groups")
                 return
             }
         }).then((group_info)=> {
@@ -134,7 +135,7 @@ const Group = ( { user, setGroup }) => {
                 return response.json()
             }
             else {
-                alert("Count Not Delete Group")
+                alert("Could Not Delete Group")
                 return
             }
         }).then((groups)=> {
@@ -149,7 +150,6 @@ const Group = ( { user, setGroup }) => {
 
     async function isCodeValid() {
         let checkCode = document.getElementById("join-group-inp").value
-        console.log(checkCode)
 
         const response = await fetch(`/api/check-group/${checkCode}`, {
                 method: "GET",
@@ -170,12 +170,47 @@ const Group = ( { user, setGroup }) => {
                 return response.json()
             }
             else {
-                alert("Count Not Check Group")
+                alert("Could Not Check Group")
                 return
             }
         }).then((data)=> {
             if (data) {
-                console.log(groups)
+                if (data["status"]) {
+                    console.log(data)
+                    let already_joined = false
+                    for (let group of groups) {
+                        if (group["group_id"] === data["id"]) {
+                            already_joined = true
+                            break
+                        }
+                    }
+
+                    if (!already_joined) {
+                        let info = {
+                            user_id: user.id,
+                            name: data["name"]
+                        }
+                        const response = createGroup(info)
+                        response.then((response) => {
+                            // Check if response was valid
+                            if (response.status === 200) {
+                                return response.json()
+                            }
+                            else {
+                                alert("Could Not Create Group")
+                                return
+                            }
+                        }).then((group_info)=> {
+                            // Set User
+                            if (group_info) {
+                                setGroup(group_info.group_id)
+                                setcreateShow(false)
+                            }
+                        })
+                    }
+
+                    joinGroup(data["id"])
+                }
             }
         })
     }

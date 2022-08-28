@@ -92,16 +92,20 @@ class Database:
                 cursor.execute("SELECT * FROM groups")
 
                 list_groups = cursor.fetchall()
-
-        group_codes = {}
-
-        for group in list_groups:
-            group_codes.append(group[1])
-
-        if group_id in group_codes:
-            return True
+                
+        found = False
+        name = ""
         
-        return False
+        for group in list_groups:
+            if group[1] == group_id:
+                found = True
+                name = group[2]
+
+        if found:
+            return (True, group_id, name)
+        
+        return (False, group_id, name)
+    
 
     def get_projects(self, group_id):
         with self.connection as conn:
