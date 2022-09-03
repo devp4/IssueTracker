@@ -1,5 +1,6 @@
 from flask import Flask, request
-from database import Database
+from database.database import Database
+from database.projects import Projects
 
 app = Flask(__name__)
 db = Database()
@@ -59,7 +60,7 @@ def check_group(group_id):
 
 @app.route("/api/projects/<group_id>", methods=["GET"])
 def get_projects(group_id):
-    projects = db.get_projects(group_id=group_id)
+    projects = Projects(connection=db.connection).get_projects(group_id=group_id)
     projects.reverse()
 
     if projects:
@@ -73,7 +74,8 @@ def get_projects(group_id):
 @app.route("/api/create-project", methods=["POST"])
 def create_project():
     data = request.get_json()
-    proj_id = db.create_project(data=data)
+    proj_id = Projects(connection=db.connection).create_project(data=data)
+
     if proj_id:
         return {"id": proj_id}, 200
     
@@ -81,7 +83,7 @@ def create_project():
 
 @app.route("/api/delete-project/<project_id>", methods=["DELETE"])
 def delete_post(project_id):
-    status = db.delete_project(project_id=project_id)
+    status = Projects(connection=db.connection).delete_project(project_id=project_id)
     if status:
         return project_id, 200
     
@@ -90,7 +92,7 @@ def delete_post(project_id):
 @app.route("/api/update-project", methods=["POST"])
 def update_project():
     data = request.get_json()
-    status = db.update_project(data)
+    status = Projects(connection=db.connection).update_project(data)
 
     if status:
         return {"status": "updated"}, 200
