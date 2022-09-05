@@ -1,6 +1,7 @@
 from flask import Flask, request
 from database.database import Database
 from database.projects import Projects
+from database.group import Group
 
 app = Flask(__name__)
 db = Database()
@@ -17,7 +18,7 @@ def create_user():
 @app.route("/api/create-group", methods=["POST"])
 def create_group():
     data = request.get_json()
-    group_id = db.create_group(group_data=data)
+    group_id = Group(connection=db.connection).create_group(group_data=data)
 
     if group_id:
         return {"group_id": group_id}, 200
@@ -26,7 +27,7 @@ def create_group():
 
 @app.route("/api/get-groups/<user_id>", methods=["GET"])
 def get_groups(user_id):
-    groups = db.get_groups(user_id=user_id)
+    groups = Group(connection=db.connection).get_groups(user_id=user_id)
 
     if groups:
         return {"groups": groups}, 200
@@ -38,7 +39,7 @@ def get_groups(user_id):
 
 @app.route("/api/delete-group/<group_id>", methods=["DELETE"])
 def delete_group(group_id):
-    groups = db.delete_group(group_id=group_id)
+    groups = Group(connection=db.connection).delete_group(group_id=group_id)
 
     if groups:
         return {"group_id": group_id}, 200
@@ -50,7 +51,7 @@ def delete_group(group_id):
 
 @app.route("/api/check-group/<group_id>", methods=["GET"])
 def check_group(group_id):
-    valid, valid_id, name = db.check_group(group_id)
+    valid, valid_id, name = Group(connection=db.connection).check_group(group_id)
     
     if valid: 
         return {"status": True, "id": valid_id, "name": name}

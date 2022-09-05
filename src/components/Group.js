@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Button, Modal, InputGroup, Form, Card, Row, Col} from "react-bootstrap"
 import "./component-styles/Group.css"
 
-const Group = ( { user, setGroup }) => {
+const Group = ( { user, setUser, setGroup }) => {
     
     const [createShow, setcreateShow] = useState(false)
     const [joinShow, setjoinShow] = useState(false)
@@ -11,7 +11,6 @@ const Group = ( { user, setGroup }) => {
     const [leavingGroup, setleavingGroup] = useState(null)
 
     const [groups, setGroups] = useState([])
-    const [validCode, setvalidCode] = useState(false)
 
     async function createGroup(data) {
         const response = await fetch("/api/create-group", {
@@ -176,7 +175,6 @@ const Group = ( { user, setGroup }) => {
         }).then((data)=> {
             if (data) {
                 if (data["status"]) {
-                    console.log(data)
                     let already_joined = false
                     for (let group of groups) {
                         if (group["group_id"] === data["id"]) {
@@ -219,6 +217,7 @@ const Group = ( { user, setGroup }) => {
         <div className="group-div">
             <Button className="create-group-btn" onClick={() => setcreateShow(true)}>Create Group</Button>
             <Button className="join-group-btn" onClick={() => handleJoinGroups(user)}>Join Group</Button>
+            <Button className="sign-out" onClick={() => setUser(null)}>Sign Out</Button>
             
             <Modal show={createShow} onHide={() => setcreateShow(false)}>
                 <Modal.Header closeButton>
